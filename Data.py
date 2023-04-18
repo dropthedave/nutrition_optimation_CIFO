@@ -1,6 +1,6 @@
 # Nutrient minimums.
 nutrients = [
-    ['Calories (kcal)', 3],
+    ['Calories (kcal)', 3000],
     ['Protein (g)', 70],
     ['Calcium (g)', 0.8],
     ['Iron (mg)', 12],
@@ -11,9 +11,6 @@ nutrients = [
     ['Vitamin C (mg)', 75],
 ]
 
-# Commodity, Unit, 1939 price (cents), Calories (kcal), Protein (g),
-# Calcium (g), Iron (mg), Vitamin A (KIU), Vitamin B1 (mg), Vitamin B2 (mg),
-# Niacin (mg), Vitamin C (mg)
 commodities = [
     [
         'Wheat Flour (Enriched)', '10 lb.', 36, 44.7, 1411, 2, 365, 0, 55.4,
