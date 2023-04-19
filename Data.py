@@ -11,6 +11,21 @@ nutrients = {
     'Vitamin C (mg)':           75
 }
 
+# Format & Data
+columns = [
+    'Unit',
+    '1939 price (cents)',
+    'Calories (kcal)',
+    'Protein (g)',
+    'Calcium (g)',
+    'Iron (mg)',
+    'Vitamin A (KIU)',
+    'Vitamin B1 (mg)',
+    'Vitamin B2 (mg)',
+    'Niacin (mg)',
+    'Vitamin C (mg)'
+]
+
 commodities = {
     'Wheat Flour (Enriched)':   ['10 lb.', 36, 44.7, 1411, 2, 365, 0, 55.4, 33.3, 441, 0],
     'Macaroni':                 ['1 lb.', 14.1, 11.6, 418, 0.7, 54, 0, 3.2, 1.9, 68, 0],
