@@ -3,11 +3,6 @@ from Script3_Fitness import monetary_fitness
 import random
 import numpy as np
 
-#################
-# Test Parameters
-population_size = 100
-#################
-
 def random_population(population_size, nutrients, commodities):
     '''
     This function generates random individuals for the population of size "population_size"
@@ -36,10 +31,13 @@ def random_population(population_size, nutrients, commodities):
     return population
 
 
-######################
-# Test the function
-######################
-# pop = random_population(population_size, nutrients, commodities)
-# print(monetary_fitness(pop, commodities))
-# print(np.min(monetary_fitness(pop, commodities)))
-# print(pop[np.argmin(monetary_fitness(pop, commodities))])
+###############
+# Test Function
+###############
+
+# set population size
+population_size = 10
+# generate random population of size 10
+pop = random_population(population_size, nutrients, commodities)
+# print monetary fitness of the population
+print(monetary_fitness(pop, commodities))
