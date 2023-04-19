@@ -33,7 +33,7 @@ def random_population(population_size, nutrients, commodities):
 ###############
 # Test Function
 ###############
-
+# from Script3_Fitness import monetary_fitness
 # set population size
 # population_size = 10
 # generate random population of size 10
