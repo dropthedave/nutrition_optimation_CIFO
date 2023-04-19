@@ -13,10 +13,17 @@ nutrients = {
 
 # Format & Data
 columns = [
-    'Unit', '1939 price (cents)', 'Calories (kcal)',
-    'Protein (g)', 'Calcium (g)', 'Iron (mg)',
-    'Vitamin A (KIU)', 'Thiamine (mg)', 'Riboflavin (mg)',
-    'Niacin (mg)', 'Ascorbic Acid (mg)'
+    'Unit',
+    '1939 price (cents)',
+    'Calories (kcal)',
+    'Protein (g)',
+    'Calcium (g)',
+    'Iron (mg)',
+    'Vitamin A (KIU)',
+    'Vitamin B1 (mg)',
+    'Vitamin B2 (mg)',
+    'Niacin (mg)',
+    'Vitamin C (mg)'
 ]
 
 commodities = {
