@@ -1,4 +1,5 @@
 from Script1_Data import nutrients, commodities, columns
+from Script3_Fitness import monetary_fitness
 import random
 import numpy as np
 
@@ -37,7 +38,8 @@ def random_population(population_size, nutrients, commodities):
 
 ######################
 # Test the function
-pop = random_population(population_size, nutrients, commodities)
-
-from Script3_Fitness import monetary_fitness
-print(monetary_fitness(pop, commodities))
+######################
+# pop = random_population(population_size, nutrients, commodities)
+# print(monetary_fitness(pop, commodities))
+# print(np.min(monetary_fitness(pop, commodities)))
+# print(pop[np.argmin(monetary_fitness(pop, commodities))])
