@@ -1,13 +1,13 @@
-# CIFO_Project_Group2
+# The Stigler Diet Problem
 
-## The Stigler Diet Problem
+## Data
 
 **Nutrients List**
 
 
 |  Nutrient | Daily Recommended Intake |
 |-------------- | -------------- | 
-| Calories (kcal) | 3 | 
+| Calories (kcal) | 3000 | 
 | Protein (g) | 70 | 
 | Calcium (g) | 0.8 | 
 | Iron (mg) | 12 | 
@@ -100,3 +100,17 @@
 | Corn Syrup | 24 oz. | 13.7 | 14.7 | 0 | 0.5 | 74 | 0 | 0 | 0 | 5 | 0 | 
 | Molasses | 18 oz. | 13.6 | 9.0 | 0 | 10.3 | 244 | 0 | 1.9 | 7.5 | 146 | 0 | 
 | Strawberry Preserves | 1 lb. | 20.5 | 6.4 | 11 | 0.4 | 7 | 0.2 | 0.2 | 0.4 | 3 | 0 |
+
+---
+## Selection Process
+
+- Fitness proportionate selection (Roulette Wheel)
+- Ranking selection
+- Tournament selection
+
+---
+## Variation Process
+
+
+---
+## Survivors Choice
