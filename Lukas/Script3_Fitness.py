@@ -9,6 +9,6 @@ def monetary_fitness(population, commodities):
     # create list with prices
     price_list = np.array([i[1] for i in list(commodities.values())])
     # calculate price for each individual via dot product
-    # DISCLAIMER: fitness is in Cents not Dollars
+    # DISCLAIMER: FITNESS IS IN CENTS(¢) NOT DOLLARS($)!!!
     fitness = [np.dot(np.array(population[i]), price_list) for i in range(len(population))]
     return fitness
