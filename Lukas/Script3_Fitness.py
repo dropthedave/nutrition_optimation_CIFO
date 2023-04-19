@@ -1,4 +1,4 @@
-from Script1_Data import nutrients, commodities, columns
+from Script1_Data import nutrients, commodities
 import numpy as np
 
 def monetary_fitness(population, commodities):

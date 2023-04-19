@@ -1,5 +1,4 @@
-from Script1_Data import nutrients, commodities, columns
-from Script3_Fitness import monetary_fitness
+from Script1_Data import nutrients, commodities
 import random
 import numpy as np
 
@@ -36,8 +35,10 @@ def random_population(population_size, nutrients, commodities):
 ###############
 
 # set population size
-population_size = 10
+# population_size = 10
 # generate random population of size 10
-pop = random_population(population_size, nutrients, commodities)
+# pop = random_population(population_size, nutrients, commodities)
+# print population
+# print(pop)
 # print monetary fitness of the population
-print(monetary_fitness(pop, commodities))
+# print(monetary_fitness(pop, commodities))

@@ -1,4 +1,4 @@
-from Script1_Data import nutrients, commodities, columns
+from Script1_Data import nutrients, commodities
 from Script3_Fitness import monetary_fitness
 import numpy as np
 

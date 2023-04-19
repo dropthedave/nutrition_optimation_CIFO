@@ -1,4 +1,5 @@
-def mutation():
+def mutation(population):
+
     return
 
 def crossover():
