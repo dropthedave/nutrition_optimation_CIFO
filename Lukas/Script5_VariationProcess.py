@@ -1,6 +1,8 @@
-def mutation(population):
+from Script1_Data import nutrients, commodities
 
+def mutation():
     return
 
-def crossover():
+def crossover(population):
+    
     return

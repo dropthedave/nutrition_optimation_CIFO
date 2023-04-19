@@ -2,7 +2,7 @@ from Script1_Data import nutrients, commodities
 import random
 import numpy as np
 
-def random_population(population_size, nutrients, commodities):
+def random_population(population_size, nutrients=nutrients, commodities=commodities):
     '''
     This function generates random individuals for the population of size "population_size"
     Output: N (population_size) individuals with the quantity per item to satisfy the constraints

@@ -2,7 +2,7 @@ from Script1_Data import nutrients, commodities
 from Script3_Fitness import monetary_fitness
 import numpy as np
 
-def roulette(population, commodities):
+def roulette(population, commodities=commodities):
     # calculate fitness for all individuals in population
     pop_fitness = monetary_fitness(population, commodities)
     # calculate probability for each individual

@@ -1,7 +1,7 @@
 from Script1_Data import nutrients, commodities
 import numpy as np
 
-def monetary_fitness(population, commodities):
+def monetary_fitness(population, commodities=commodities):
     '''
     This function calculates the fitness of individuals.
     In the stiger diet problem, the fitness is the sum of the food values.
