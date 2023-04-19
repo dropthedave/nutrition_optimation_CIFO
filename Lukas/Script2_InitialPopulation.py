@@ -4,10 +4,14 @@ import numpy as np
 
 #################
 # Test Parameters
-population_size = 5
+population_size = 100
 #################
 
 def random_population(population_size, nutrients, commodities):
+    '''
+    This function generates random individuals for the population of size "population_size"
+    Output: N (population_size) individuals with the quantity per item to satisfy the constraints
+    '''
     # create list with constraints
     constraints = np.array(list(nutrients.values()))
     # create list for population
@@ -26,8 +30,14 @@ def random_population(population_size, nutrients, commodities):
             cumulative_list += np.array(commodities[key][2:])
             # update the one-hot encoded array to indicate the selected key
             individual[list(commodities.keys()).index(key)] += 1
+        # add the individual to the population
         population.append(individual)
     return population
 
+
+######################
+# Test the function
 pop = random_population(population_size, nutrients, commodities)
-print(pop)
+
+from Script3_Fitness import monetary_fitness
+print(monetary_fitness(pop, commodities))
