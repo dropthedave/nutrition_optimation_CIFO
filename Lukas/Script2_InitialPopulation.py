@@ -1,4 +1,6 @@
 from Script1_Data import nutrients, commodities
+from Script3_Fitness import monetary_fitness
+from Script4_SelectionProcess import roulette
 import random
 import numpy as np
 
@@ -37,8 +39,10 @@ def random_population(population_size, nutrients=nutrients, commodities=commodit
 # set population size
 # population_size = 10
 # generate random population of size 10
-# pop = random_population(population_size, nutrients, commodities)
+# pop = np.array(random_population(population_size, nutrients, commodities))
 # print population
 # print(pop)
+# test selection
+# selection = roulette(pop, commodities)
 # print monetary fitness of the population
-# print(monetary_fitness(pop, commodities))
+# print(monetary_fitness(selection, commodities))

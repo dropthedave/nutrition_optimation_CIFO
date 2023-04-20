@@ -4,9 +4,11 @@ import numpy as np
 
 def roulette(population, commodities=commodities):
     # calculate fitness for all individuals in population
-    pop_fitness = monetary_fitness(population, commodities)
+    pop_fitness = np.array(monetary_fitness(population, commodities))
     # calculate probability for each individual
-    pop_proba = pop_fitness / sum(pop_fitness)
+    # SMALLER FITNESS = HIGHER PROBABILITY TO BE SELECTED
+    inverted_fitness = np.sum(pop_fitness) - pop_fitness
+    pop_proba = inverted_fitness / np.sum(inverted_fitness)
     # create list with range of population
     pop_range = np.arange(len(population))
     # select individual based on probability via pop_range
