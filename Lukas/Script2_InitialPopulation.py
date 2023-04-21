@@ -1,6 +1,6 @@
 from Script1_Data import nutrients, commodities
 from Script3_Fitness import monetary_fitness
-from Script4_SelectionProcess import roulette
+#from Script4_SelectionProcess import roulette
 import random
 import numpy as np
 
@@ -19,3 +19,6 @@ def initial_population(population_size, nutrients=nutrients, commodities=commodi
         population = np.append(population, solution, axis=0)
     
     return population
+
+pop = initial_population(10)
+print(monetary_fitness(pop))
