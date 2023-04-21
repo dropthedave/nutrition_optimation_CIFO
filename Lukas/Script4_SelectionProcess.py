@@ -17,7 +17,13 @@ def roulette(population, commodities=commodities):
     select_final = [population[i] for i in select]
     return select_final
 
-def ranked():
+def ranked(population, commodities=commodities):
+    # calculate fitness for all individuals in population
+    pop_fitness = np.array(monetary_fitness(population, commodities))
+    # sort population based on fitness (descending)
+    # SMALLER FITNESS = HIGHER PROBABILITY TO BE SELECTED
+    pop_sorted = [i for _, i in sorted(zip(pop_fitness,population), reverse=True)]
+    
     return
 
 def tournament():
