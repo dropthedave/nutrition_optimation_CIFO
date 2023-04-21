@@ -26,5 +26,5 @@ def initial_population(population_size, nutrients=nutrients, commodities=commodi
 # Test
 ######
 
-pop = initial_population(10)
-print(roulette(pop, nutrients, commodities))
+# pop = initial_population(10)
+# print(roulette(pop, nutrients, commodities))

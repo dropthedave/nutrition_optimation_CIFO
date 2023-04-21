@@ -15,7 +15,6 @@ def roulette(population, nutrients=nutrients, commodities=commodities):
     select = [np.random.choice(pop_range, p=pop_proba) for i in range(len(population))]
     # final selection of individuals
     select_final = [population[i] for i in select]
-    print(pop_proba)
     return select_final
 
 def ranked(population, commodities=commodities):
