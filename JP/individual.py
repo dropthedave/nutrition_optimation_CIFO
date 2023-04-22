@@ -10,9 +10,12 @@ class Individual:
         replacement=True,
         valid_set=None,
     ):
-        if representation == None:
+        if representation is None:
             if replacement == True:
-                self.representation = np.array([choice(valid_set) for i in range(size)])
+                valid_set_reversed = list(range(1, len(valid_set)+1))
+                valid_set_reversed.reverse()
+                dist =  [i / sum(valid_set_reversed) for i in valid_set_reversed]
+                self.representation = np.array([np.random.choice(valid_set, p=dist) for i in range(size)])
             elif replacement == False:
                 self.representation = np.array(sample(valid_set, size))
         else:
