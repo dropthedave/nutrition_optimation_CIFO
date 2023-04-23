@@ -2,9 +2,9 @@ from Script1_Data import nutrients, commodities
 from Script3_Fitness import monetary_fitness
 import numpy as np
 
-def roulette(population, commodities=commodities):
+def roulette(population, nutrients=nutrients, commodities=commodities):
     # calculate fitness for all individuals in population
-    pop_fitness = np.array(monetary_fitness(population, commodities))
+    pop_fitness = np.array(monetary_fitness(population, nutrients, commodities))
     # calculate probability for each individual
     # SMALLER FITNESS = HIGHER PROBABILITY TO BE SELECTED
     inverted_fitness = np.sum(pop_fitness) - pop_fitness
@@ -18,12 +18,6 @@ def roulette(population, commodities=commodities):
     return select_final
 
 def ranked(population, commodities=commodities):
-    # calculate fitness for all individuals in population
-    pop_fitness = np.array(monetary_fitness(population, commodities))
-    # sort population based on fitness (descending)
-    # SMALLER FITNESS = HIGHER PROBABILITY TO BE SELECTED
-    pop_sorted = [i for _, i in sorted(zip(pop_fitness,population), reverse=True)]
-    
     return
 
 def tournament():

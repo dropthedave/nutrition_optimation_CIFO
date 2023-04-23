@@ -1,6 +1,23 @@
 import pandas as pd
 
-# Nutrient minimums.
+# def transform_data():
+#     # Read in the data.
+#     df = pd.read_csv('McDonaldsMenu.csv')
+#     # Create an empty dictionary.
+#     d = {}
+#     # Iterate through the rows of the dataframe.
+#     for index, row in df.iterrows():
+#         # Get the item name and the other columns as a list.
+#         item_name = row['Item']
+#         item_values = [row['Price ($)'], row['Calories (kcal)'], row['Total Fat (g)'], row['Cholesterol (mg)'],
+#                        row['Sodium (mg)'], row['Carbohydrates (g)'], row['Sugars (g)'], row['Protein (g)']]
+        
+#         # Add the item and its values to the dictionary.
+#         d[item_name] = item_values
+#     return d
+
+# Nutrient minimums and maximums
+
 nutrients = {
     'Calories (kcal)':          2300, #min
     'Total Fat (g)':              75, #max
@@ -11,22 +28,7 @@ nutrients = {
     'Protein (g)':                70 #min
 }
 
-# df = pd.read_csv('McDonaldsMenu.csv')
-# # create an empty dictionary
-# d = {}
-
-# # iterate through the rows of the dataframe
-# for index, row in df.iterrows():
-#     # get the item name and the other columns as a list
-#     item_name = row['Item']
-#     item_values = [row['Price ($)'], row['Calories (kcal)'], row['Total Fat (g)'], row['Cholesterol (mg)'],
-#                    row['Sodium (mg)'], row['Carbohydrates (g)'], row['Sugars (g)'], row['Protein (g)']]
-    
-#     # add the item and its values to the dictionary
-#     d[item_name] = item_values
-
-# # print the dictionary
-# print(d)
+# Data
 
 commodities = {
     'Egg McMuffin':                                                     [4.48, 300, 13.0, 260, 750, 31, 3, 17],

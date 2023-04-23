@@ -16,9 +16,16 @@ import pandas as pd
 #         d[item_name] = item_values
 #     return d
 
-# Nutrient minimums and maximums
-
+# Nutrient minimums 
 nutrients = {
+    'Calories (kcal)':          2300,
+    'Total Fat (g)':              75,
+    'Sodium (mg)':                2300,
+    'Carbohydrates (g)':          250,
+    'Protein (g)':                70
+}
+# Nutrient minimums 
+nutrients_min = {
     'Calories (kcal)':          2300,
     'Total Fat (g)':              75,
     'Sodium (mg)':                2300,
