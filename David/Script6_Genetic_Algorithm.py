@@ -2,18 +2,21 @@ from Script1_Data import nutrients, commodities
 from Script2_InitialPopulation_David import init_population
 from Script3_Fitness_David import fitness
 from Script4_SelectionProcess_David import tournament
-from Script5_Crossover_David import crossover, mutation
+from Script5_Crossover_David import crossover,mutation
 import numpy as np
 
 #How many generations are we training
-Generations = 5000
+Generations = 200
 #Set the number of individuals in the population
-Nr_Individuals = 1000
+Nr_Individuals = 10000
 #Set the number of tournaments to define the parents in the selection process
 nr_tournaments = 500
-#Set the number of mutation cycles
-mutation_cycles = 2
-mutation_prob = 10
+
+#Mutation parameters
+bit_flips = 2 #mult_single_mutation
+mutation_prob = 20
+mutation_cycles = 100 # Cycle Mutation
+
 
 champion_fitness = 10000000
 #def genetic_algorithm(nutrients, commodities, generations, nr_individuals):
@@ -40,11 +43,17 @@ for i in range(1,Generations):
         print("New Champion, fitness:", champion_fitness)
 
     #Initiate a tournament in order to get to the parents
-    parents = tournament(population, nutrients, commodities, nr_tournaments, fitness_pop)
+    parents = tournament(fitness_pop)
 
     #perform crossover
     crossed_population = crossover(population, parents)
-    mutation_pop = mutation(crossed_population, mutation_cycles, mutation_prob)
+    mutation_pop = mutation(crossed_population,
+    mutation_prob, 
+    bit_flips, #mult_single_mutation
+    mutation_cycles, 
+    mutation_type = "single_bit_flip")
+
+
 final_items=[]
 items_list = list(commodities.keys())
 
