@@ -8,7 +8,7 @@ def init_population(Nr_Individuals, commodities):
     #Create an empty dictionary for the population
     Population = {}
     #Iterate through the number of set individuals
-    for i in range(1, Nr_Individuals):
+    for i in range(1, Nr_Individuals+1):
         #Generate a random individual
         Individual = np.random.randint(2, size=len(commodities))
         #Add it to the population 
