@@ -19,8 +19,8 @@ import pandas as pd
 # Nutrient minimums 
 nutrients = {
     'Calories (kcal)':          2300,
-    'Total Fat (g)':              75,
-    'Sodium (mg)':                2300,
+    'Total Fat (g)':              60,
+    'Sodium (mg)':                500,
     'Carbohydrates (g)':          250,
     'Protein (g)':                70
 }

@@ -13,15 +13,23 @@ def roulette(pop):
     #     position += (1/individual.fitness)
     #     if position > mark:
     #         return individual
-
-    max_fitness_in_pop = max([individual.fitness for individual in pop]) + 0.01 # + cent, bc. individual with highest fitness should still have a small chance to be selected
-    total_inverted_fitness = sum([(max_fitness_in_pop - individual.fitness) for individual in pop])
-    mark = uniform(0,total_inverted_fitness)
-    position = 0
-    for individual in pop:
-        position += (max_fitness_in_pop - individual.fitness)
-        if position > mark:
-            return individual
+    
+    fitness = [individual.fitness for individual in pop]
+    sum_fitness_in_pop = sum(fitness)
+    inverted_fitness = sum_fitness_in_pop - np.array(fitness)
+    probability = inverted_fitness / sum(inverted_fitness)
+    # create list with range of population
+    pop_range = np.arange(len(pop))
+    # select individual based on probability via pop_range
+    select = np.random.choice(pop_range, p=probability)
+    individual = pop[select]
+    return individual
+    
+    # fitness = [individual.fitness for individual in pop]
+    # sum_fitness_in_pop = sum(fitness)
+    # inverted_prob = 1 - np.array(fitness/sum_fitness_in_pop)
+    # index = np.random.choice(list(range(len(sorted_pop))), p=inverted_prob)
+    # return sorted_pop[index]
 
 def ranked(pop):
     sorted_pop = sorted(pop, key=lambda individual: individual.fitness, reverse=True)
@@ -34,4 +42,4 @@ def tournament(pop,k):
     tournament = []
     for _ in range(k):
         tournament.append(choice(pop))
-    return min(pop, key=attrgetter("fitness"))
+    return min(tournament, key=attrgetter("fitness"))

@@ -12,15 +12,15 @@ class Individual:
     ):
         if representation is None:
             if replacement == True:
-                valid_set_reversed = list(range(1, len(valid_set)+1))
-                valid_set_reversed.reverse()
-                dist =  [i / sum(valid_set_reversed) for i in valid_set_reversed]
-                self.representation = np.array([np.random.choice(valid_set, p=dist) for i in range(size)])
+                #valid_set_reversed = list(range(1, len(valid_set)+1))
+                #valid_set_reversed.reverse()
+                #dist =  [i / sum(valid_set_reversed) for i in valid_set_reversed]
+                self.representation = np.array([np.random.choice(valid_set) for i in range(size)])
             elif replacement == False:
                 self.representation = np.array(sample(valid_set, size))
         else:
             self.representation = np.array(representation)
-        self.fitness = self.get_fitness()
+        self.fitness, self.costs, self.totals = self.get_fitness()
 
     def get_fitness(self):
         raise Exception("You need to monkey patch the fitness path.")
@@ -38,7 +38,5 @@ class Individual:
         self.representation[position] = value
 
     def __repr__(self):
-        price_list = np.array(list(commodities.values()))[:,0]
-        self.costs = self.representation.dot(price_list)
         return f"Individual(size={len(self.representation)}); Fitness: {self.fitness}; Price: {self.costs}"
 
