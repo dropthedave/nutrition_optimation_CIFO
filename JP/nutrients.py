@@ -2,7 +2,7 @@ from individual import Individual
 from population import Population
 from data import nutrients, commodities
 from selection import roulette, ranked, tournament
-from variation import crossover, add_one_mutation
+from variation import crossover, mutation
 from copy import deepcopy
 from random import random
 from operator import attrgetter
@@ -107,16 +107,23 @@ if __name__ == "__main__":
     # Monkey Patching
     Individual.get_fitness = get_fitness
     
-    genetic_algorithm(select=tournament,
-                      k=5, # put number, if no tournament selection, and string for k-point-crossover
-                      crossover=crossover,
-                      mutate=add_one_mutation,
-                      gens= 50, 
-                      pop_size=1000, 
-                      opt="min", 
-                      val_set=list(range(2)), 
-                      mut_prob= 0.3,
-                      xo_prob = 0.8,
-                      xo_type = "uniform",
-                      elite=2 # number of best individuals
-)
+    # initialize pop
+    pop = Population(size=100, optim="min", sol_size=len(commodities), valid_set=list(range(2)), replacement=True)
+
+    mutation_list = ["single_bit_flip","complete_bit_flip", "single_swap_mutation", "multiple_bit_flip_mutation", "cycle_mutation", "scramble_mutation" ]
+    crossover_list = ["uniform", "one-point", "five-point", "ten-point"]
+
+    pop.evolve(
+        select=ranked,
+        tournament_k=None, # put number, if no tournament selection, and string for k-point-crossover
+        gens= 30, 
+        mut_prob = 0.2,
+        mutate=mutation,
+        mut_type = "multiple_bit_flip_mutation",
+        mut_cycles = None,
+        bit_flips = None,
+        xo_prob = 0.9,
+        crossover=crossover,
+        xo_type = "five-point",
+        elitism=True # number of best individuals
+    )

@@ -1,31 +1,31 @@
 from data import nutrients, commodities
 import numpy as np
-from random import randint,random, choice, sample
+from random import randint, random, choice, sample
 from individual import Individual
 
-def add_one_mutation(individual, mut_prob):
-    mut_index = choice(range(91))
-    #if random() < mut_prob:
-    if individual[mut_index] == 0:
-        individual[mut_index] = 1
-    elif individual[mut_index] == 1:
-        individual[mut_index] = 0
-    return individual
+# def add_one_mutation(individual, mut_prob):
+#     mut_index = choice(range(91))
+#     #if random() < mut_prob:
+#     if individual[mut_index] == 0:
+#         individual[mut_index] = 1
+#     elif individual[mut_index] == 1:
+#         individual[mut_index] = 0
+#     return individual
 
 
 
-def swap_mutation(population, commodities=commodities, mutation_rate=0.1):
-    # if np.random.random() < mutation_rate:
+# def swap_mutation(population, commodities=commodities, mutation_rate=0.1):
+#     # if np.random.random() < mutation_rate:
         
         
-    return
+#     return
 
 
-def single_point_xo(p1, p2):
-    xo_point = randint(1, len(p1) - 1)
-    offspring1 = np.concatenate((p1[:xo_point],p2[xo_point:]))
-    offspring2 = np.concatenate((p2[:xo_point],p1[xo_point:]))
-    return offspring1, offspring2
+# def single_point_xo(p1, p2):
+#     xo_point = randint(1, len(p1) - 1)
+#     offspring1 = np.concatenate((p1[:xo_point],p2[xo_point:]))
+#     offspring2 = np.concatenate((p2[:xo_point],p1[xo_point:]))
+#     return offspring1, offspring2
 
 def crossover(parent1, parent2, xo_type ='one-point'):
     parent1 = list(parent1)
@@ -56,6 +56,74 @@ def crossover(parent1, parent2, xo_type ='one-point'):
 
     return offspring1, offspring2
 
+
+def mutation(
+        individual,
+        mutation_type = "single_bit_flip",
+        bit_flips=None, #mult_single_mutation
+        mutation_cycles=None, 
+    ):
+    #Single Bit Flip Mutation
+    if mutation_type =="single_bit_flip":
+        mutation_point = np.random.randint((len(individual)), size=1)[0]
+        if individual[mutation_point] == 1: 
+            individual[mutation_point] = 0
+        elif individual[mutation_point] == 0:
+            individual[mutation_point] = 1
+        return individual
+
+    # Complete Bit Flip Mutation
+    ######### hier hab ich das geändert, dass alle bits geflipt werden?!?
+    elif mutation_type =="complete_bit_flip":
+        for i in range(len(individual)):
+            if individual[i] == 1: 
+                individual[i] = 0
+            elif individual[i] == 0:
+                individual[i] = 1
+        return individual
+
+    #Swap Mutation (Single Bit)
+    elif mutation_type =="single_swap_mutation":
+        p1=np.random.randint((len(individual)), size=1)[0]
+        p2=np.random.randint((len(individual)), size=1)[0]
+        value_1 = individual[p1]
+        value_2 = individual[p2]
+        individual[p1] = value_2
+        individual[p2] = value_1
+        return individual
+
+    #Multiple Bit Flip Mutation
+    #### Wir haben oben einen Parameter mit bit_flips, der wird aber hier immer überschrieben
+    #### Ich glaube so werden nur bit_flips - 1 flips durchgeführt 
+    elif mutation_type =="multiple_bit_flip_mutation":
+        bit_flips = 2 #np.random.randint(len(individual), size=1)[0]
+        for _ in range(1,bit_flips): 
+            mutation_point = np.random.randint((len(individual)), size=1)[0]
+            if individual[mutation_point] == 1: 
+                individual[mutation_point] = 0
+            elif individual[mutation_point] == 0:
+                individual[mutation_point] = 1
+        return individual
+
+    # Cycle mutation (free)
+    #### Das ist anders als in Vorlesung, und eigentlich das gleiche wie multiple bit flip?
+    elif mutation_type =="cycle_mutation":
+        for _ in range(mutation_cycles):
+            mutation_point = np.random.randint((len(individual)), size=1)[0]
+            if individual[mutation_point] == 1: 
+                individual[mutation_point] = 0
+            else: 
+                individual[mutation_point] = 1
+        return individual
+
+    #Scramble Mutation 
+    elif mutation_type =="scramble_mutation":
+        split_point_1=np.random.randint((len(individual)), size=1)[0]
+        split_point_2=np.random.randint(low= int(split_point_1), high=len(individual), size=1)[0]
+        sublist = np.random.permutation(individual[split_point_1:split_point_2])
+        individual[split_point_1:split_point_2] = sublist
+        return individual
+
 if __name__ == "__main__":
     # Monkey Patching
     def get_fitness(self):
@@ -83,5 +151,5 @@ if __name__ == "__main__":
         return fitness
     Individual.get_fitness = get_fitness
     p1, p2 = Individual([0]*91), Individual([1]*91)
-    print(single_point_xo(p1, p2))
+    # print(single_point_xo(p1, p2))
     #print(add_one_mutation(np.array([1,0,3,1,0,2,1]),0.333))
