@@ -127,3 +127,7 @@ if __name__ == "__main__":
         xo_type = "five-point",
         elitism=True # number of best individuals
     )
+
+    pop.plot_nutrition_curve()
+    pop.plot_fitness_curve()
+
