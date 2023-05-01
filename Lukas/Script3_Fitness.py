@@ -4,7 +4,7 @@ import numpy as np
 def monetary_fitness(population, nutrients=nutrients, commodities=commodities):
     '''
     This function calculates the fitness of individuals.
-    In the stiger diet problem, the fitness is the sum of the food values.
+    In the diet problem, the fitness is the sum of the food values.
     '''
     # create list with prices
     price_list = np.array([i[0] for i in np.array(list(commodities.values()))])
