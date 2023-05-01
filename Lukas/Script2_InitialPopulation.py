@@ -1,6 +1,7 @@
 from Script1_Data import nutrients, commodities
 from Script3_Fitness import monetary_fitness
 from Script4_SelectionProcess import roulette
+from Script5_VariationProcess import crossover
 import random
 import numpy as np
 
@@ -27,4 +28,3 @@ def initial_population(population_size, nutrients=nutrients, commodities=commodi
 ######
 
 # pop = initial_population(10)
-# print(roulette(pop, nutrients, commodities))
