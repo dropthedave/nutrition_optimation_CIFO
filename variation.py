@@ -30,7 +30,7 @@ from individual import Individual
 def crossover(parent1, parent2, xo_type ='one-point'):
     parent1 = list(parent1)
     parent2 = list(parent2)
-    
+
     if xo_type == 'uniform':
             offspring1 = [] 
             offspring2 = []
@@ -55,7 +55,6 @@ def crossover(parent1, parent2, xo_type ='one-point'):
         offspring2 = parent2[:rl[0]] + parent1[rl[0]:rl[1]] + parent2[rl[1]:rl[2]] + parent1[rl[2]:rl[3]] + parent2[rl[3]:rl[4]] + parent1[rl[4]:rl[5]] + parent2[rl[5]:rl[6]] + parent1[rl[6]:rl[7]] + parent2[rl[7]:rl[8]] + parent1[rl[8]:rl[9]] + parent2[rl[9]:]
 
     return offspring1, offspring2
-
 
 def mutation(
         individual,
