@@ -82,6 +82,7 @@ def mutation(
         return individual
 
     #Swap Mutation (Single Bit)
+    #  Berfin does not recommend bc. often just a 0 is changed to a 0 ... wasting time
     elif mutation_type =="single_swap_mutation":
         p1=np.random.randint((len(individual)), size=1)[0]
         p2=np.random.randint((len(individual)), size=1)[0]
