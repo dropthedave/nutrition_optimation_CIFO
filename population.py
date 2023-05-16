@@ -18,7 +18,6 @@ class Population:
         self.history_carbohydrates = []
         self.history_fat = []
         self.history_sodium = []
-        #self.history_sugar = []
         self.history_products = []
         for _ in range(size):
             self.individuals.append(
@@ -54,84 +53,75 @@ class Population:
             xo_type = "one-point",
             elitism=True
     ):
-        for i in range(gens): # our termination condition
+        # Iterate over the specified number of generations
+        for i in range(gens):
             new_gen = []
-                    
+            
+            # Generate a new generation
             while len(new_gen) < len(self):
-                # select
+                # Select parents for reproduction
                 if tournament_k is None:
+                    # Select two parents using the provided selection method
                     parent1, parent2 = select(self), select(self)
                 else:
+                    # Select two parents using tournament selection with k participants
                     parent1 = select(self, k=tournament_k)
                     parent2 = select(self, k=tournament_k)
-                # crossover
+                
+                # Perform crossover to create offspring
                 if random() < xo_prob:
+                    # Perform crossover between parent1 and parent2 using the specified method
                     offspring1, offspring2 = crossover(parent1, parent2, xo_type)
-                else: # replication
+                else: 
+                    # Replicate parents if crossover probability is not met
                     offspring1 = parent1
                     offspring2 = parent2
-                #mutation
+                
+                # Perform mutation on offspring
                 if random() < mut_prob: 
-                    offspring1 = mutate(offspring1, mut_type, bit_flips=bit_flips, mutation_cycles=mut_cycles, )
+                    # Mutate offspring1 using the specified mutation method, bit flips, and cycles
+                    offspring1 = mutate(offspring1, mut_type, bit_flips=bit_flips, mutation_cycles=mut_cycles)
                 if random() < mut_prob:
+                    # Mutate offspring2 using the specified mutation method
                     offspring2 = mutate(offspring2, mut_type)
-
+                
+                # Add the offspring to the new generation
                 new_gen.append(Individual(offspring1))
                 new_gen.append(Individual(offspring2))
             
+            # Apply elitism by replacing the worst individuals in the current generation with the best individuals from the new generation
             if elitism:
                 if self.optim == "max":
+                    # Find the best individual in the current generation
                     elite = deepcopy(max(self.individuals, key=attrgetter("fitness")))
+                    # Find the worst individual in the new generation
                     worst_new = min(new_gen, key=attrgetter("fitness"))
+                    # Replace the worst individual with the elite individual if it has better fitness
                     if elite.fitness > worst_new.fitness:
                         new_gen.pop(new_gen.index(worst_new))
                         new_gen.append(elite)
                 elif self.optim == "min":
+                    # Find the best individual in the current generation
                     elite = deepcopy(min(self.individuals, key=attrgetter("fitness")))
+                    # Find the worst individual in the new generation
                     worst_new = max(new_gen, key=attrgetter("fitness"))
+                    # Replace the worst individual with the elite individual if it has better fitness
                     if elite.fitness < worst_new.fitness:
                         new_gen.pop(new_gen.index(worst_new))
                         new_gen.append(elite)
-
+            
+            # Update the current generation with the new generation
             self.individuals = new_gen
+            
+            # Store the fitness and other metrics of the best individual in each generation
             best = min(self, key=attrgetter("fitness"))
-            # print(f'Best Individual: {best}') # take best individual wrt. attribut 'fitness'
             self.history_fitness.append(best.fitness)
             self.history_calories.append(best.totals[0])
             self.history_fat.append(best.totals[1]) 
             self.history_sodium.append(best.totals[2]) 
             self.history_carbohydrates.append(best.totals[3]) 
             self.history_protein.append(best.totals[4]) 
-            #self.history_sugar.append(best.totals[5])
-        # print("Products:")
         commodity_keys = list(commodities.keys())
         for i, j in zip(min(self, key=attrgetter("fitness")).representation, commodity_keys):
             if i == 1:
                 self.history_products.append(j)
-
-    def plot_fitness_curve(self):
-        generations = list(range(len(self.history_calories)))
-        plt.plot(generations, self.history_fitness)
-        plt.xlabel("Generations")
-        plt.ylabel("Fitness")
-        plt.title("Fitness Curve")
-        plt.show()
-
-    def plot_nutrition_curve(self):
-        generations = list(range(len(self.history_calories)))
-        plt.plot(generations, self.history_calories, label='Calories (kcal)', c='r')
-        plt.axhline(y = nutrients['Calories (kcal)'], linestyle = ':', c='r')
-        plt.plot(generations, self.history_protein, label='Protein (g)', c='g')
-        plt.axhline(y = nutrients['Protein (g)'], linestyle = ':', c='g')
-        plt.plot(generations, self.history_carbohydrates, label='Carbohydrates (g)', c='b')
-        plt.axhline(y = nutrients['Carbohydrates (g)'], linestyle = ':', c='b')
-        plt.plot(generations, self.history_fat, label='Total Fat (g)', c='c')
-        plt.axhline(y = nutrients['Total Fat (g)'], linestyle = ':', c='c')
-        plt.plot(generations, self.history_sodium, label='Sodium (mg)', c='m')
-        plt.axhline(y = nutrients['Sodium (mg)'], linestyle = ':', c='m')
-        plt.yscale("log")
-        plt.xlabel("Generations")
-        plt.ylabel("Nutrition Values")
-        plt.title("Nutrition Curve")
-        plt.legend(loc ="best", fontsize="6")
-        plt.show()
