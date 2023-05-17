@@ -76,7 +76,7 @@ def mutation(
     # Flips a specified number of bits in the individual
     # The number of bit flips is determined by the 'bit_flips' parameter
     elif mutation_type == "multiple_bit_flip_mutation":
-        for _ in range(bit_flips): 
+        for _ in range(1,bit_flips): 
             mutation_point = np.random.randint(len(individual), size=1)[0]
             if individual[mutation_point] == 1:
                 individual[mutation_point] = 0

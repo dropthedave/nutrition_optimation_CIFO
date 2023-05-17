@@ -83,7 +83,7 @@ class Population:
                     offspring1 = mutate(offspring1, mut_type, bit_flips=bit_flips, mutation_cycles=mut_cycles)
                 if random() < mut_prob:
                     # Mutate offspring2 using the specified mutation method
-                    offspring2 = mutate(offspring2, mut_type)
+                    offspring2 = mutate(offspring2, mut_type, bit_flips=bit_flips, mutation_cycles=mut_cycles)
                 
                 # Add the offspring to the new generation
                 new_gen.append(Individual(offspring1))
