@@ -1,7 +1,7 @@
 # Computational Intelligence for Optimization Project - Group 2
 
 ## Team Members:
-|**Student**    |**Student Number**|
+|**Student**    |**Student ID**    |
 |---------------|------------------|
 |Jan-Paul Briem |2022214           |
 |Felix Gayer    |20220320          |
