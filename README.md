@@ -3,7 +3,7 @@
 ## Team Members:
 |**Student**    |**Student ID**    |
 |---------------|------------------|
-|Jan-Paul Briem |2022214           |
+|Jan-Paul Briem |20222214          |
 |Felix Gayer    |20220320          |
 |David Halder   |20220632          |
 |Lukas Stark    |20220626          |
