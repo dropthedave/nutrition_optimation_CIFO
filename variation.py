@@ -40,8 +40,7 @@ def crossover(parent1, parent2, xo_type='one-point'):
 def mutation(
         individual,
         mutation_type="single_bit_flip",
-        bit_flips=None,                                     # Number of bit flips for multiple_bit_flip_mutation
-        mutation_cycles=None,
+        bit_flips=None, # Number of bit flips for multiple_bit_flip_mutation
     ):
     # Single Bit Flip Mutation
     if mutation_type == "single_bit_flip":
@@ -64,19 +63,15 @@ def mutation(
 
     # Swap Mutation (Single Bit)
     elif mutation_type == "single_swap_mutation":
-        p1 = np.random.randint(len(individual), size=1)[0]
-        p2 = np.random.randint(len(individual), size=1)[0]
-        value_1 = individual[p1]
-        value_2 = individual[p2]
-        individual[p1] = value_2
-        individual[p2] = value_1
+        mut_index = sample(range(len(individual)), 2)
+        individual[mut_index[0]], individual[mut_index[1]] = individual[mut_index[1]], individual[mut_index[0]]
         return individual
 
     # Multiple Bit Flip Mutation
     # Flips a specified number of bits in the individual
     # The number of bit flips is determined by the 'bit_flips' parameter
     elif mutation_type == "multiple_bit_flip_mutation":
-        for _ in range(1,bit_flips): 
+        for _ in range(0,bit_flips): 
             mutation_point = np.random.randint(len(individual), size=1)[0]
             if individual[mutation_point] == 1:
                 individual[mutation_point] = 0
