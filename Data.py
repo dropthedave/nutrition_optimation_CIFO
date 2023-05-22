@@ -2,7 +2,7 @@ import pandas as pd
 
 # def transform_data():
 #     # Read in the data.
-#     df = pd.read_csv('McDonaldsMenu.csv')
+#     df = pd.read_csv('DataCSV/McDonaldsMenuData.csv')
 #     # Create an empty dictionary.
 #     d = {}
 #     # Iterate through the rows of the dataframe.
@@ -18,15 +18,23 @@ import pandas as pd
 
 # Nutrient minimums
 
+# Source:
+# https://www.researchgate.net/figure/Mean-Daily-Nutritional-Intake-for-Group-3_tbl7_235045008
+
 nutrients = {
-    'Calories (kcal)':          2300,
-    'Total Fat (g)':              75,
-    'Sodium (mg)':                2300,
-    'Carbohydrates (g)':          250,
+    'Calories (kcal)':            1670,
+    'Total Fat (g)':              60,
+    'Sodium (mg)':                3820,
+    'Carbohydrates (g)':          220,
     'Protein (g)':                70
 }
 
 # Data
+
+# Menu Nutrients Source:
+# https://github.com/Enjia/Nutrition-Facts-for-McDonald-s-Menu/blob/master/menu.csv
+# Price Source:
+# https://www.fastfoodmenuprices.com/mcdonalds-prices/
 
 commodities = {
     'Egg McMuffin': [4.48, 300, 13.0, 750, 31, 17],
