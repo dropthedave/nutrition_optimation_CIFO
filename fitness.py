@@ -21,7 +21,7 @@ def get_fitness(self):
     
     # Create constraints list
     constraints = np.array(list(nutrients.values()))
-    check = constraints <= commodities_of_individual[1:]                        # min constraints only here
+    check = constraints <= commodities_of_individual[1:] # min constraints only here
 
     # Initial fitness based on costs
     fitness = commodities_of_individual[0]
@@ -30,6 +30,6 @@ def get_fitness(self):
     # Increase fitness for every broken constraint
     for i in range(len(constraints)):
         if check[i] == False:
-            fitness += 10                                                       # arbitrary fix value rn 
+            fitness += 10 # arbitrary fix value rn 
 
     return fitness, costs, commodities_of_individual[1:]

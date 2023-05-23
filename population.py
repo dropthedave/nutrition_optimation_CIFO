@@ -91,6 +91,7 @@ class Population:
             
             # Apply elitism by replacing the worst individuals in the current generation with the best individuals from the new generation
             if elitism:
+                # elitism for maximization problem
                 if self.optim == "max":
                     # Find the best individual in the current generation
                     elite = deepcopy(max(self.individuals, key=attrgetter("fitness")))
@@ -100,6 +101,7 @@ class Population:
                     if elite.fitness > worst_new.fitness:
                         new_gen.pop(new_gen.index(worst_new))
                         new_gen.append(elite)
+                # elitism for minimization problem
                 elif self.optim == "min":
                     # Find the best individual in the current generation
                     elite = deepcopy(min(self.individuals, key=attrgetter("fitness")))
@@ -114,7 +116,10 @@ class Population:
             self.individuals = new_gen
             
             # Store the fitness and other metrics of the best individual in each generation
-            best = min(self, key=attrgetter("fitness"))
+            if self.optim == "max":
+                best = max(self, key=attrgetter("fitness"))
+            elif self.optim == "min":
+                best = min(self, key=attrgetter("fitness"))
             self.history_fitness.append(best.fitness)
             self.history_calories.append(best.totals[0])
             self.history_fat.append(best.totals[1]) 
