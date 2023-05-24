@@ -1,10 +1,18 @@
 from data import nutrients, commodities
 import numpy as np
-from random import uniform, choice
+from random import choice
 from operator import attrgetter
 
 
 def roulette(pop):
+    """This function performs a fitness proportinate selection (roulette selection) and returns the selected individual of the population.
+
+    Args:
+        pop (Population): Current population object.
+
+    Returns:
+        Individual: Selected individual 
+    """
     # Extract the fitness values for each individual in the population
     fitness = [individual.fitness for individual in pop]
     
@@ -31,6 +39,14 @@ def roulette(pop):
 
 
 def ranked(pop):
+    """This function performs a ranking selection and returns the selected individual of the population.
+
+    Args:
+        pop (Population): Current population object.
+
+    Returns:
+        Individual: Selected individual 
+    """
     # Sort the population based on individual fitness in descending order
     sorted_pop = sorted(pop, key=lambda individual: individual.fitness, reverse=True)
     
@@ -48,6 +64,15 @@ def ranked(pop):
 
 
 def tournament(pop,k):
+    """This function performs a tournament selection and returns the selected individual of the population.
+
+    Args:
+        pop (Population): Current population object.
+        k (int): Size of the tournament. 
+
+    Returns:
+        Individual: Selected individual 
+    """
     tournament = []
     for _ in range(k):
         # Randomly select an individual from the population and add it to the tournament

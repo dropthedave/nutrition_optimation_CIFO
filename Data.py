@@ -1,25 +1,35 @@
 import pandas as pd
 
-# def transform_data():
-#     # Read in the data.
-#     df = pd.read_csv('DataCSV/McDonaldsMenuData.csv')
-#     # Create an empty dictionary.
-#     d = {}
-#     # Iterate through the rows of the dataframe.
-#     for index, row in df.iterrows():
-#         # Get the item name and the other columns as a list.
-#         item_name = row['Item']
-#         item_values = [row['Price ($)'], row['Calories (kcal)'], row['Total Fat (g)'],
-#                        row['Sodium (mg)'], row['Carbohydrates (g)'], row['Protein (g)']]
+def transform_data():
+    """This function was used to transform the data from the .csv file into a dictionary, 
+    which was then stored below in this file to make the data easily importable.
+
+    Returns:
+        dictionary: The keys are the names of the McDonald's menu items and the values are corresponding nutritional values.
+    """
+    # Read in the data.
+    df = pd.read_csv('DataCSV/McDonaldsMenuData.csv')
+    # Create an empty dictionary.
+    d = {}
+    # Iterate through the rows of the dataframe.
+    for index, row in df.iterrows():
+        # Get the item name and the other columns as a list.
+        item_name = row['Item']
+        item_values = [row['Price ($)'], row['Calories (kcal)'], row['Total Fat (g)'],
+                       row['Sodium (mg)'], row['Carbohydrates (g)'], row['Protein (g)']]
         
-#         # Add the item and its values to the dictionary.
-#         d[item_name] = item_values
-#     return d
+        # Add the item and its values to the dictionary.
+        d[item_name] = item_values
+    return d
 
-# Nutrient minimums
 
-# Source:
-# https://www.researchgate.net/figure/Mean-Daily-Nutritional-Intake-for-Group-3_tbl7_235045008
+###################################################################
+# Nutrient minimum constraints
+###################################################################
+"""
+    Source:
+    https://www.researchgate.net/figure/Mean-Daily-Nutritional-Intake-for-Group-3_tbl7_235045008
+"""
 
 nutrients = {
     'Calories (kcal)':            1670,
@@ -29,13 +39,17 @@ nutrients = {
     'Protein (g)':                70
 }
 
-# Data
 
-# Menu Nutrients Source:
-# https://github.com/Enjia/Nutrition-Facts-for-McDonald-s-Menu/blob/master/menu.csv
+###################################################################
+# McDonald's Data
+###################################################################
+"""
+    Menu Nutrients Source:
+    https://github.com/Enjia/Nutrition-Facts-for-McDonald-s-Menu/blob/master/menu.csv
 
-# Price Source:
-# https://www.fastfoodmenuprices.com/mcdonalds-prices/
+    Price Source:
+    https://www.fastfoodmenuprices.com/mcdonalds-prices/
+"""
 
 commodities = {
     'Egg McMuffin': [4.48, 300, 13.0, 750, 31, 17],

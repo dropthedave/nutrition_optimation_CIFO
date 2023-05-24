@@ -1,10 +1,8 @@
 from data import commodities, nutrients
-from random import shuffle, choice, sample, random
+from random import random
 from individual import Individual
-import numpy as np
 from copy import deepcopy
 from operator import attrgetter
-import matplotlib.pyplot as plt
 
 
 class Population:
@@ -47,12 +45,27 @@ class Population:
             gens= 100, 
             mut_prob = 0.2,
             mut_type = "single_bit_flip",
-            mut_cycles = None,
             bit_flips = None,
             xo_prob = 0.9,
             xo_type = "one-point",
             elitism=True
     ):
+        """This function evolves the initial/current population over a defined number of generations. Through the parameters different methods
+        for the selection, crossover and mutation can be assigned, as well as the crossover and mutation probabilites.  
+
+        Args:
+            select (function, optional): Pass a selection function (contains one selection algorithm). Defaults to None.
+            tournament_k (int, optional): Tournament size if tournament selection is passed. Defaults to None.
+            crossover (function, optional): Pass crossover function (can contain more crossover algorithms, the used one is specified in xo_type). Defaults to None.
+            mutate (function, optional): Pass mutation function (can contain more mutation algorithms, the used one is specified in mut_type). Defaults to None.
+            gens (int, optional): Number of generations. Defaults to 100.
+            mut_prob (float, optional): Probability of mutating an offspring. Defaults to 0.2.
+            mut_type (str, optional): Mutation method of the passed mutation function that should be used. Defaults to "single_bit_flip".
+            bit_flips (int, optional): Number of bit flips if mut_type="multiple_bit_flip_mutation". Defaults to None.
+            xo_prob (float, optional): Probability of applying crossover. Defaults to 0.9.
+            xo_type (str, optional): Crossover method of the passed crossover function that should be used. Defaults to "one-point".
+            elitism (bool, optional): Enable/Disable elitism. Defaults to True.
+        """
         # Iterate over the specified number of generations
         for i in range(gens):
             new_gen = []
@@ -77,7 +90,7 @@ class Population:
                     offspring1 = parent1
                     offspring2 = parent2
                 
-                # Perform mutation on offspring
+                # Perform mutation on offsprings
                 if random() < mut_prob: 
                     # Mutate offspring1 using the specified mutation method, bit flips, and cycles
                     offspring1 = mutate(offspring1, mut_type, bit_flips=bit_flips)
@@ -85,7 +98,7 @@ class Population:
                     # Mutate offspring2 using the specified mutation method
                     offspring2 = mutate(offspring2, mut_type, bit_flips=bit_flips)
                 
-                # Add the offspring to the new generation
+                # Add the offsprings to the new generation
                 new_gen.append(Individual(offspring1))
                 new_gen.append(Individual(offspring2))
             
@@ -127,6 +140,12 @@ class Population:
             self.history_carbohydrates.append(best.totals[3]) 
             self.history_protein.append(best.totals[4]) 
         commodity_keys = list(commodities.keys())
-        for i, j in zip(min(self, key=attrgetter("fitness")).representation, commodity_keys):
-            if i == 1:
-                self.history_products.append(j)
+
+        if self.optim == "max":
+            for i, j in zip(max(self, key=attrgetter("fitness")).representation, commodity_keys):
+                if i == 1:
+                    self.history_products.append(j)
+        elif self.optim == "min":
+            for i, j in zip(min(self, key=attrgetter("fitness")).representation, commodity_keys):
+                if i == 1:
+                    self.history_products.append(j)
